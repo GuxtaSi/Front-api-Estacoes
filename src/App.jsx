@@ -94,10 +94,8 @@ const App = () => {
 	}
 
 	const onUpdate = (data) => {
-		const formData = {...data};
-		debugger
-
-		api.put(`estacoes/${data.codigo_wmo}`, { formData })
+		const formData = data;
+		api.put(`estacoes/${data.codigo_wmo}`, { ...formData })
 			.then(({ data, response }) => {
 				if (response.status == 200) {
 					toast(
@@ -260,12 +258,11 @@ const App = () => {
 									<Td p={0}>
 										<EditIcon
 											fontSize={20}
-											onClick={() => {
-												setEditing(true);
-												debugger;
-												setDataEdit({ id_estacao, nome_estacao, codigo_wmo, uf, data_fundacao, latitude, longitude, altitude, index });
-												onOpen();
-											}}
+											onClick={() => [
+												setEditing(true),
+												setDataEdit({ id_estacao, nome_estacao, codigo_wmo, uf, data_fundacao, latitude, longitude, altitude, index }),
+												onOpen(),
+											]}
 										/>
 									</Td>
 									<Td p={0}>

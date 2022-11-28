@@ -20,7 +20,7 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose, editing, onCreate, onUpdat
 	const [id_estacao, setIdestacao] = useState(dataEdit.id_estacao || "");
 	const [nome_estacao, setNomeestacao] = useState(dataEdit.nome_estacao || "");
 	const [codigo_wmo, setCodigowmo] = useState(dataEdit.codigo_wmo || "");
-	const [UF, setUF] = useState(dataEdit.uf || "");
+	const [uf, setUF] = useState(dataEdit.uf || "");
 	const [data_fundacao, setCodigodata_fundacaoIso] = useState(dataEdit.data_fundacao || "");
 	const [latitude, setLatitude] = useState(dataEdit.latitude || "");
 	const [longitude, setLongitude] = useState(dataEdit.longitude || "");
@@ -30,7 +30,7 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose, editing, onCreate, onUpdat
 	const toast = useToast()
 
 	const handleSave = () => {
-		if (!nome_estacao || !codigo_wmo || !UF || !data_fundacao || !latitude || !longitude || !altitude) {
+		if (!nome_estacao || !codigo_wmo || !uf || !data_fundacao || !latitude || !longitude || !altitude) {
 			toast(
 				{
 					position: 'top-right',
@@ -45,10 +45,10 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose, editing, onCreate, onUpdat
 
 		if (editing) {
 			debugger
-			onUpdate({ id_estacao, nome_estacao, codigo_wmo, UF, data_fundacao, latitude, longitude, altitude })
+			onUpdate({ id_estacao, nome_estacao, codigo_wmo, uf, data_fundacao, latitude, longitude, altitude })
 		} else {
 			let id = data.length + 1;
-			onCreate({ id_estacao: id, nome_estacao, codigo_wmo, UF, data_fundacao, latitude, longitude, altitude })
+			onCreate({ id_estacao: id, nome_estacao, codigo_wmo, uf, data_fundacao, latitude, longitude, altitude })
 		}
 	};
 
@@ -58,7 +58,7 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose, editing, onCreate, onUpdat
 			<Modal isOpen={isOpen} onClose={onClose} scrollBehavior='inside' size='xl'>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>{editing ? 'Editando estação : ' + id_estacao : 'Cadastro de estação'} </ModalHeader>
+					<ModalHeader>{editing ? 'Editando estação : ' +id_estacao : 'Cadastro de estação'} </ModalHeader>
 					<ModalCloseButton />
 					<ModalBody >
 						<FormControl display="flex" flexDir="column" gap={4} isRequired>
@@ -88,7 +88,7 @@ const ModalComp = ({ data, dataEdit, isOpen, onClose, editing, onCreate, onUpdat
 									<FormLabel>UF</FormLabel>
 									<Input
 										type="text"
-										value={UF}
+										value={uf}
 										onChange={(e) => setUF(e.target.value)}
 										placeholder='UF'
 										required />
